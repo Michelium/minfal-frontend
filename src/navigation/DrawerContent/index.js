@@ -3,8 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// import {View} from '../../common';
-import View from './../../common/View'
+import {View} from '../../common';
 import DrawerContentLink from '../DrawerContent/DrawerContentLink';
 import AppLogo from '../../assets/icons/app-logo.svg';
 import LocationIcon from '../../assets/icons/nav-location-icon.svg';

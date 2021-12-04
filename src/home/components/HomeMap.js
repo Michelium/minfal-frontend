@@ -1,15 +1,47 @@
-import React from 'react';
-import {StyleSheet, Image} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
-// import {Button, View} from '../../common';
-import View from './../../common/View';
-import Button from './../../common/Button';
+import { Button, View } from '../../common';
 import MarkerIcon from './../../assets/icons/edit-map-marker-icon.svg';
 import map_styles from './../../config/map_styles';
 
-const HomeMap = ({selected, setSelected}) => {
+const HomeMap = ({ selected, setSelected }) => {
+
+  const [isLoading, setLoading] = useState(true);
+
+  const [markers, setMarkers] = useState([]);
+
+  const getMarkers = async () => {
+    try {
+      console.log(123);
+      const response = await fetch('https://app.minfal.nl/api/companies.json');
+      const json = await response.json();
+
+      let tempMarkers = [];
+      json.map((marker, index) => {
+        tempMarkers.push({
+          id: marker.id,
+          title: marker.name,
+          description: marker.description,
+          lat: parseFloat(marker.latitude),
+          long: parseFloat(marker.longitude),
+        });
+      });
+      setMarkers(tempMarkers)
+      console.log(tempMarkers);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getMarkers();
+  }, []);
+
   return (
     <View style={styles.mapContainer}>
       <MapView
@@ -22,15 +54,20 @@ const HomeMap = ({selected, setSelected}) => {
           latitudeDelta: 1.0922,
           longitudeDelta: 1.0421,
         }}>
-        {MAP_MOCK_LOCATIONS.map(location => (
+        {MAP_MOCK_LOCATIONS.map((location, index) => (
           <Marker
-            key={location.id}
+            key={index}
             onPress={() => setSelected('info')}
-            coordinate={{latitude: location.lat, longitude: location.long}}>
-            {/* <MarkerIcon /> */}
+            coordinate={{
+              latitude: location.lat,
+              longitude: location.long
+            }}
+          >
+            <MarkerIcon />
           </Marker>
         ))}
       </MapView>
+
       {selected === 'search' && (
         <Button onPress={() => setSelected('filter')} style={styles.filterBtn}>
           <Image
@@ -46,8 +83,8 @@ const HomeMap = ({selected, setSelected}) => {
 const MAP_MOCK_LOCATIONS = [
   {
     id: 1,
-    long: 67.001137,
-    lat: 24.860735,
+    long: 52.0480883,
+    lat: 4.245947399999999,
   },
   {
     id: 2,

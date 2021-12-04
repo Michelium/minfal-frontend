@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import HomeFilterModal from './../components/HomeFilterModal';
 import HomeMap from '../components/HomeMap';
