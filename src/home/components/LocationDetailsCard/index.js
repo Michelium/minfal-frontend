@@ -1,9 +1,9 @@
-import React, {useMemo, useRef} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
-import {Image, StyleSheet, useWindowDimensions} from 'react-native';
-import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
+import React, { useMemo, useRef, useEffect, useState } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Image, StyleSheet, useWindowDimensions } from 'react-native';
+import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 
-import {Button, InfoBox, Text, View} from '../../../common';
+import { Button, InfoBox, Text, View } from '../../../common';
 import TagIcon from '../../../assets/icons/edit-tag-icon.svg';
 import PlaceLogoIcon from '../../../assets/icons/edit-place-logo-icon.svg';
 import InformationIcon from '../../../assets/icons/edit-information-icon.svg';
@@ -17,15 +17,35 @@ import * as Colors from '../../../config/colors';
 /* =============================================================================
 <LocationDetailsCard />
 ============================================================================= */
-const LocationDetailsCard = ({onClose}) => {
+const LocationDetailsCard = ({ onClose, id }) => {
   const bottomSheetRef = useRef(null);
-  const {height: SCREEN_HEIGHT} = useWindowDimensions();
-  const fullHeight = SCREEN_HEIGHT - 70;
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
+  const fullHeight = SCREEN_HEIGHT - 120;
   const snapPoints = useMemo(() => ['60%', fullHeight], [fullHeight]);
 
   const _handleInformationPress = () => {
     bottomSheetRef.current.snapToIndex(1);
   };
+
+  const [location, setLocation] = useState({});
+
+  const getLocation = async () => {
+    try {
+      const response = await fetch('https://app.minfal.nl/api/companies/' + id);
+      const json = await response.json();
+
+      setLocation(json);
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   return (
     <BottomSheet
@@ -40,8 +60,7 @@ const LocationDetailsCard = ({onClose}) => {
         <View style={styles.contentContainer}>
           <View horizontal style={styles.titleContainer}>
             <View>
-              <Text xxl>Pathé</Text>
-              <Text sm>Amsterdam Arena</Text>
+              <Text md>{location.name}</Text>
             </View>
             <PlaceLogoIcon />
           </View>
@@ -64,14 +83,17 @@ const LocationDetailsCard = ({onClose}) => {
           <View horizontal>
             <InfoBox
               icon={<LocationIcon />}
-              message="Johan Cruijff Boulevard600"
+              message={<Text>{`
+              ${location.streetName} ${location.houseNumber}
+              ${location.postcode} ${location.place}
+              `}</Text>}
             />
-            <View flex>
-              <Text align="right">Openingstijden 10:00 - 00:00</Text>
-              <Text success align="right">
-                Open
-              </Text>
-            </View>
+          </View>
+          <View flex>
+            <Text align="right">Openingstijden 10:00 - 00:00</Text>
+            <Text success align="right">
+              Open
+            </Text>
           </View>
           <View horizontal>
             <InfoBox

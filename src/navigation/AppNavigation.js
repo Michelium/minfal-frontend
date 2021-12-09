@@ -22,7 +22,7 @@ export const drawerRef = createRef();
 ============================================================================= */
 const AppNavigation = () => {
   const [open, setOpen] = useState(false);
-  console.log(open);
+  
   const normalView = {
     height: '100%',
     borderRadius: 0,

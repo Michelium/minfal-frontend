@@ -7,7 +7,7 @@ import { Button, View } from '../../common';
 import MarkerIcon from './../../assets/icons/edit-map-marker-icon.svg';
 import map_styles from './../../config/map_styles';
 
-const HomeMap = ({ selected, setSelected }) => {
+const HomeMap = ({ selected, setSelected, setCurrentMarker }) => {
 
   const [isLoading, setLoading] = useState(true);
 
@@ -55,7 +55,7 @@ const HomeMap = ({ selected, setSelected }) => {
         {markers.map((location, index) => (
           <Marker
             key={index}
-            onPress={() => setSelected('info')}
+            onPress={() => {setSelected('info'); setCurrentMarker(location.id) }}
             coordinate={{
               latitude: location.lat,
               longitude: location.long

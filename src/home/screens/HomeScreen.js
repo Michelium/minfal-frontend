@@ -14,12 +14,17 @@ import LocationSearchCard from '../components/LocationSearchCard';
 ============================================================================= */
 const HomeScreen = () => {
   const [selected, setSelected] = useState('search');
+  const [currentMarker, setCurrentMarker] = useState(null);
+
   return (
     <Container>
       <Header />
-      <HomeMap selected={selected} setSelected={setSelected} />
+      <HomeMap 
+        selected={selected} 
+        setSelected={setSelected}
+        setCurrentMarker={setCurrentMarker} />
       {selected === 'info' ? (
-        <LocationDetailsCard onClose={() => setSelected('search')} />
+        <LocationDetailsCard id={currentMarker} onClose={() => setSelected('search')} />
       ) : selected === 'search' ? (
         <LocationSearchCard />
       ) : selected === 'filter' ? (
