@@ -15,7 +15,6 @@ const HomeMap = ({ selected, setSelected }) => {
 
   const getMarkers = async () => {
     try {
-      console.log(123);
       const response = await fetch('https://app.minfal.nl/api/companies.json');
       const json = await response.json();
 
@@ -30,7 +29,6 @@ const HomeMap = ({ selected, setSelected }) => {
         });
       });
       setMarkers(tempMarkers)
-      console.log(tempMarkers);
     } catch (error) {
       console.log(error);
     } finally {
@@ -79,39 +77,6 @@ const HomeMap = ({ selected, setSelected }) => {
     </View>
   );
 };
-
-const MAP_MOCK_LOCATIONS = [
-  {
-    id: 1,
-    long: 52.0480883,
-    lat: 4.245947399999999,
-  },
-  {
-    id: 2,
-    long: 52.001137,
-    lat: 4.860735,
-  },
-  {
-    id: 3,
-    long: 76.001137,
-    lat: 21.860735,
-  },
-  {
-    id: 4,
-    long: 74.001137,
-    lat: 26.860735,
-  },
-  {
-    id: 5,
-    long: 79.001137,
-    lat: 36.860735,
-  },
-  {
-    id: 6,
-    long: 80.001137,
-    lat: 40.860735,
-  },
-];
 
 const styles = StyleSheet.create({
   mapContainer: {
