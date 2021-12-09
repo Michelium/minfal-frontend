@@ -8,7 +8,6 @@ import DrawerContentLink from '../DrawerContent/DrawerContentLink';
 import AppLogo from '../../assets/icons/app-logo.svg';
 import LocationIcon from '../../assets/icons/nav-location-icon.svg';
 import HelpIcon from '../../assets/icons/nav-help-icon.svg';
-import HeartIcon from '../../assets/icons/nav-heart-icon.svg';
 import BuildingIcon from '../../assets/icons/nav-building-icon.svg';
 import SettingsIcon from '../../assets/icons/nav-settings-icon.svg';
 import HandShakeIcon from '../../assets/icons/nav-handshake-icon.svg';
@@ -53,7 +52,7 @@ const DrawerContent = ({ drawer }) => {
         <DrawerContentLink
           to="Home"
           title="Partners"
-          icon={<HeartIcon />}
+          icon={<HandShakeIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
