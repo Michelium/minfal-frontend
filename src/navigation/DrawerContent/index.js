@@ -11,6 +11,7 @@ import HelpIcon from '../../assets/icons/nav-help-icon.svg';
 import HeartIcon from '../../assets/icons/nav-heart-icon.svg';
 import BuildingIcon from '../../assets/icons/nav-building-icon.svg';
 import SettingsIcon from '../../assets/icons/nav-settings-icon.svg';
+import HandShakeIcon from '../../assets/icons/nav-handshake-icon.svg';
 
 /* =============================================================================
 <DrawerContent />
@@ -45,14 +46,14 @@ const DrawerContent = ({ drawer }) => {
         />
         <DrawerContentLink
           to="Home"
-          title="Favorieten"
-          icon={<HeartIcon />}
+          title="Ontwikkelingen Minfal"
+          icon={<BuildingIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
           to="Home"
-          title="Nieuwe bedrijven!"
-          icon={<BuildingIcon />}
+          title="Partners"
+          icon={<HeartIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink

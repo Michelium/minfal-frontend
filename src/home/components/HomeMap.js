@@ -54,7 +54,7 @@ const HomeMap = ({ selected, setSelected }) => {
           latitudeDelta: 1.0922,
           longitudeDelta: 1.0421,
         }}>
-        {MAP_MOCK_LOCATIONS.map((location, index) => (
+        {markers.map((location, index) => (
           <Marker
             key={index}
             onPress={() => setSelected('info')}
@@ -88,8 +88,8 @@ const MAP_MOCK_LOCATIONS = [
   },
   {
     id: 2,
-    long: 71.001137,
-    lat: 24.860735,
+    long: 52.001137,
+    lat: 4.860735,
   },
   {
     id: 3,
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   filterBtn: {
-    width: 75,
-    height: 75,
+    width: 65,
+    height: 65,
     right: 0,
     bottom: '16%',
     marginRight: 20,
@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   filterBtnImg: {
-    width: 60,
-    height: 37,
+    width: 55,
+    height: 33,
   },
 });
 
