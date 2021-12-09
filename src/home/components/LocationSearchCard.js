@@ -1,8 +1,8 @@
-import React, {useMemo, useRef} from 'react';
-import {StyleSheet} from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet';
+import React, { useMemo, useRef } from 'react';
+import { StyleSheet, Keyboard } from 'react-native';
+import BottomSheet, { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 
-import {Text, TextInput, View} from '../../common';
+import { Text, TextInput, View } from '../../common';
 import SearchIcon from './../../assets/icons/edit-search-icon.svg';
 import * as Colors from '../../config/colors';
 
@@ -21,11 +21,10 @@ const LocationSearchCard = () => {
       handleIndicatorStyle={styles.handleIndicator}
       backgroundStyle={styles.containerBg}
       snapPoints={snapPoints}>
-      <TextInput
-        onPress={_handleInputPress}
-        containerStyle={styles.input}
+      <BottomSheetTextInput
+        style={styles.textInput}
         placeholder="Zoek in kaart"
-        left={<SearchIcon />}
+        placeholderTextColor={Colors.placeholder}
       />
       <View style={styles.txtContainer}>
         <Text align="center" lg style={styles.text}>
@@ -47,12 +46,6 @@ const styles = StyleSheet.create({
   handleIndicator: {
     backgroundColor: 'rgba(99,99,99,1)',
   },
-  input: {
-    padding: 8,
-    fontSize: 15,
-    borderRadius: 8,
-    backgroundColor: 'rgba(99,99,99,0.5)',
-  },
   txtContainer: {
     flex: 1,
     marginBottom: 40,
@@ -60,6 +53,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.placeholder,
+  },
+  textInput: {
+    alignSelf: "stretch",
+    marginHorizontal: 12,
+    marginBottom: 12,
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(99,99,99,0.5)',
+    fontSize: 15,
+    color: "white",
   },
 });
 
