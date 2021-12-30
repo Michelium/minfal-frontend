@@ -1,26 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import {StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import {View} from '../../common';
-import DrawerContentLink from '../DrawerContent/DrawerContentLink';
-import AppLogo from '../../assets/icons/app-logo.svg';
-import LocationIcon from '../../assets/icons/nav-location-icon.svg';
-import HelpIcon from '../../assets/icons/nav-help-icon.svg';
-import BuildingIcon from '../../assets/icons/nav-building-icon.svg';
-import SettingsIcon from '../../assets/icons/nav-settings-icon.svg';
-import HandShakeIcon from '../../assets/icons/nav-handshake-icon.svg';
+import {View} from '../../../common';
+import {drawerRef} from '../index';
+import DrawerContentLink from './DrawerContentLink';
+import AppLogo from '../../../assets/icons/app-logo.svg';
+import LocationIcon from '../../../assets/icons/nav-location-icon.svg';
+import HelpIcon from '../../../assets/icons/nav-help-icon.svg';
+import HandShakeIcon from '../../../assets/icons/nav-handshake-icon.svg';
+import BuildingIcon from '../../../assets/icons/nav-building-icon.svg';
+import SettingsIcon from '../../../assets/icons/nav-settings-icon.svg';
 
 /* =============================================================================
 <DrawerContent />
 ============================================================================= */
-const DrawerContent = ({ drawer }) => {
+const DrawerContent = () => {
   const navigation = useNavigation();
 
   const _handleLinkPress = to => {
-    navigation.navigate(to);
-    drawer.current.close();
+    if (to === 'HomeDrawer') {
+      navigation.navigate(to);
+      drawerRef.current.close();
+    } else {
+      navigation.navigate(to);
+    }
   };
 
   return (
@@ -32,31 +37,31 @@ const DrawerContent = ({ drawer }) => {
       <AppLogo />
       <View style={styles.linksContainer}>
         <DrawerContentLink
-          to="Home"
+          to="Filter"
           title="In de buurt"
           icon={<LocationIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="Home"
+          to="HomeDrawer"
           title="Hoe werkt het?"
           icon={<HelpIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="Home"
+          to="HomeDrawer"
           title="Ontwikkelingen Minfal"
           icon={<BuildingIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="Home"
+          to="News"
           title="Partners"
           icon={<HandShakeIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="Home"
+          to="Settings"
           title="Instellingen"
           icon={<SettingsIcon />}
           onPress={_handleLinkPress}

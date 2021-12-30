@@ -7,9 +7,7 @@ import { Button, View } from '../../common';
 import MarkerIcon from './../../assets/icons/edit-map-marker-icon.svg';
 import map_styles from './../../config/map_styles';
 
-const HomeMap = ({ selected, setSelected, setCurrentMarker }) => {
-
-  const [isLoading, setLoading] = useState(true);
+const HomeMap = ({onMarkerPress, onModalToggle}) => {
 
   const [markers, setMarkers] = useState([]);
 
@@ -17,7 +15,7 @@ const HomeMap = ({ selected, setSelected, setCurrentMarker }) => {
     try {
       const response = await fetch('https://app.minfal.nl/api/companies.json');
       const json = await response.json();
-
+console.log(json);
       let tempMarkers = [];
       json.map((marker, index) => {
         tempMarkers.push({
@@ -55,7 +53,7 @@ const HomeMap = ({ selected, setSelected, setCurrentMarker }) => {
         {markers.map((location, index) => (
           <Marker
             key={index}
-            onPress={() => {setSelected('info'); setCurrentMarker(location.id) }}
+            onPress={onMarkerPress}
             coordinate={{
               latitude: location.lat,
               longitude: location.long
@@ -65,15 +63,12 @@ const HomeMap = ({ selected, setSelected, setCurrentMarker }) => {
           </Marker>
         ))}
       </MapView>
-
-      {selected === 'search' && (
-        <Button onPress={() => setSelected('filter')} style={styles.filterBtn}>
-          <Image
-            style={styles.filterBtnImg}
-            source={require('../../assets/images/filter-icon.jpeg')}
-          />
-        </Button>
-      )}
+      <Button style={styles.filterBtn} onPress={onModalToggle}>
+        <Image
+          style={styles.filterBtnImg}
+          source={require('../../assets/images/filter-icon.jpeg')}
+        />
+      </Button>
     </View>
   );
 };
@@ -87,19 +82,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   filterBtn: {
-    width: 65,
-    height: 65,
+    width: 75,
+    height: 75,
     right: 0,
-    bottom: '16%',
+    bottom: '8%',
     marginRight: 20,
     borderRadius: 75 / 2,
     position: 'absolute',
+    borderWidth: 1,
     backgroundColor: '#fff',
+    borderColor: 'rgba(201,201,201, 1)',
   },
   filterBtnImg: {
-    width: 55,
-    height: 33,
+    width: 60,
+    height: 37,
   },
 });
+
 
 export default HomeMap;

@@ -17,7 +17,7 @@ const AlertMessage = ({
   return (
     <Touchable
       onPress={onPress}
-      style={[styles.container, style, vertical ? styles.vertical : null]}>
+      style={[styles.container, vertical ? styles.vertical : null, style]}>
       <View style={styles.iconContainer}>{icon}</View>
       <Text sm style={[!vertical && styles.message, textStyles]}>
         {message}
@@ -37,14 +37,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: 'rgba(94, 121, 94, 0.2)',
   },
+
   vertical: {
     flexDirection: 'column',
     marginHorizontal: 10,
   },
   iconContainer: {
-    width: 38,
-    height: 38,
-    borderRadius: 38 / 2,
+    width: 32,
+    height: 32,
+    borderRadius: 32 / 2,
     backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,24 +1,22 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {LinearGradient} from 'expo-linear-gradient';
 
 import Text from './Text';
+import View from './View';
 import Touchable from './Touchable';
-import {drawerRef} from '../navigation/AppNavigation';
+import {drawerRef} from '../navigation/HomeDrawer/index';
 import HeartIcon from '../assets/icons/edit-heart-icon.svg';
 import MenuIcon from '../assets/icons/edit-menu-icon.svg';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 /* =============================================================================
-<Header />
+<MapHeader />
 ============================================================================= */
-const Header = () => {
+const MapHeader = () => {
   const insets = useSafeAreaInsets();
   const styles = getStyles(insets);
   return (
-    <LinearGradient
-      colors={['#1B1C23', 'transparent']}
-      style={styles.container}>
+    <View style={styles.container}>
       <Touchable style={styles.btn} onPress={() => drawerRef.current.open()}>
         <MenuIcon fill="red" />
       </Touchable>
@@ -26,7 +24,7 @@ const Header = () => {
       <Touchable style={styles.btn}>
         <HeartIcon fill="red" />
       </Touchable>
-    </LinearGradient>
+    </View>
   );
 };
 
@@ -50,4 +48,4 @@ const getStyles = insets =>
     },
   });
 
-export default Header;
+export default MapHeader;

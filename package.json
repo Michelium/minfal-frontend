@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "4",
+    "@ptomasroos/react-native-multi-slider": "~2.2.2",
     "@react-navigation/native": "~6.0.6",
     "@react-navigation/native-stack": "~6.2.5",
     "axios": "~0.24.0",
@@ -20,6 +21,7 @@
     "react": "~17.0.1",
     "react-dom": "~17.0.1",
     "react-native": "~0.64.3",
+    "react-native-dropdown-picker": "~5.2.3",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-linear-gradient": "~2.5.6",
     "react-native-maps": "~0.28.1",

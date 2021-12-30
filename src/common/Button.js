@@ -10,20 +10,28 @@ const Button = ({
   block,
   title,
   style,
+  bgColor,
   loading,
-  txtColor,
   children,
   titleStyle,
-  backgroundColor,
   ...props
 }) => {
+  const backgroundColor = {
+    borderWidth: bgColor ? 0.9 : null,
+    borderColor: bgColor ? Colors.primary : null,
+    backgroundColor: bgColor ? bgColor : Colors.primary,
+  };
+
   return (
     <Pressable
-      style={[styles.container, block && styles.block, style]}
+      style={[styles.container, block && styles.block, backgroundColor, style]}
       {...props}>
       {loading ? <ActivityIndicator color={Colors.white} /> : null}
       {!loading && title ? (
-        <Text style={[styles.title, titleStyle]}>{title}</Text>
+        <Text
+          style={[styles.title, bgColor ? styles.blackTxt : null, titleStyle]}>
+          {title}
+        </Text>
       ) : (
         children
       )}
@@ -34,12 +42,12 @@ const Button = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 12,
+    borderWidth: 1,
     marginVertical: 20,
     paddingVertical: 17,
     flexDirection: 'row',
     position: 'relative',
     justifyContent: 'center',
-    backgroundColor: Colors.primary,
   },
   block: {
     width: '100%',
@@ -49,6 +57,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.white,
     fontFamily: 'Poppins-Semibold',
+  },
+  blackTxt: {
+    color: Colors.black,
   },
 });
 

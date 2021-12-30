@@ -1,37 +1,40 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import HomeFilterModal from './../components/HomeFilterModal';
+import {Button, Container, MapHeader} from '../../common';
 import HomeMap from '../components/HomeMap';
-
-// import {Container, Header} from './../../common';
-import Header from './../../common/Header'
-import Container from './../../common/Container'
 import LocationDetailsCard from '../components/LocationDetailsCard/index';
-import LocationSearchCard from '../components/LocationSearchCard';
+import HomeFilterModal from '../components/HomeFilterModal';
+import {Image, StyleSheet} from 'react-native';
 
 /* =============================================================================
 <HomeScreen />
 ============================================================================= */
 const HomeScreen = () => {
-  const [selected, setSelected] = useState('search');
-  const [currentMarker, setCurrentMarker] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const _handleShowDetails = () => {
+    setShowDetails(!showDetails);
+  };
+
+  const _handleModalToggle = () => {
+    console.log(modalOpen);
+    setModalOpen(!modalOpen);
+  };
 
   return (
     <Container>
-      <Header />
-      <HomeMap 
-        selected={selected} 
-        setSelected={setSelected}
-        setCurrentMarker={setCurrentMarker} />
-      {selected === 'info' ? (
-        <LocationDetailsCard id={currentMarker} onClose={() => setSelected('search')} />
-      ) : selected === 'search' ? (
-        <LocationSearchCard />
-      ) : selected === 'filter' ? (
-        <HomeFilterModal setSelected={setSelected} />
-      ) : null}
+      <MapHeader />
+      <HomeMap
+        onMarkerPress={_handleShowDetails}
+        onModalToggle={_handleModalToggle}
+      />
+      {showDetails && <LocationDetailsCard onClose={_handleShowDetails} />}
+      <HomeFilterModal isOpen={modalOpen} onCLose={_handleModalToggle} />
     </Container>
   );
 };
 
+/* Export
+============================================================================= */
 export default HomeScreen;

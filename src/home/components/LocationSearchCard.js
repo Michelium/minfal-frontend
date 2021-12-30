@@ -1,9 +1,9 @@
-import React, { useMemo, useRef } from 'react';
-import { StyleSheet, Keyboard } from 'react-native';
-import BottomSheet, { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import React, {useMemo, useRef} from 'react';
+import {StyleSheet} from 'react-native';
+import BottomSheet from '@gorhom/bottom-sheet';
 
-import { Text, TextInput, View } from '../../common';
-import SearchIcon from './../../assets/icons/edit-search-icon.svg';
+import {Text, TextInput, View} from '../../common';
+import SearchIcon from '../../assets/icons/edit-search-icon.svg';
 import * as Colors from '../../config/colors';
 
 const LocationSearchCard = () => {
@@ -21,10 +21,11 @@ const LocationSearchCard = () => {
       handleIndicatorStyle={styles.handleIndicator}
       backgroundStyle={styles.containerBg}
       snapPoints={snapPoints}>
-      <BottomSheetTextInput
-        style={styles.textInput}
+      <TextInput
+        onPress={_handleInputPress}
+        containerStyle={styles.input}
         placeholder="Zoek in kaart"
-        placeholderTextColor={Colors.placeholder}
+        left={<SearchIcon />}
       />
       <View style={styles.txtContainer}>
         <Text align="center" lg style={styles.text}>
@@ -37,13 +38,21 @@ const LocationSearchCard = () => {
 
 const styles = StyleSheet.create({
   containerBg: {
-    backgroundColor: Colors.background2,
+    borderWidth: 1,
+    backgroundColor: '#F6F6F6',
+    borderColor: 'rgba(201,201,201, 0.3)',
   },
   container: {
     paddingTop: 15,
     paddingHorizontal: 20,
   },
   handleIndicator: {
+    backgroundColor: 'rgba(99,99,99,1)',
+  },
+  input: {
+    padding: 8,
+    fontSize: 15,
+    borderRadius: 8,
     backgroundColor: 'rgba(99,99,99,1)',
   },
   txtContainer: {
@@ -53,16 +62,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.placeholder,
-  },
-  textInput: {
-    alignSelf: "stretch",
-    marginHorizontal: 12,
-    marginBottom: 12,
-    padding: 8,
-    borderRadius: 8,
-    backgroundColor: 'rgba(99,99,99,0.5)',
-    fontSize: 15,
-    color: "white",
   },
 });
 

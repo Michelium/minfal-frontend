@@ -15,6 +15,7 @@ const Text = ({
   xs,
   style,
   align,
+  black,
   success,
   children,
   ...props
@@ -33,7 +34,7 @@ const Text = ({
         align === 'left' && styles.left,
         align === 'right' && styles.right,
         success && styles.success,
-        success && styles.success,
+        black && styles.black,
         style,
       ]}
       {...props}>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   xl: {
-    fontSize: 27,
+    fontSize: 25,
     fontFamily: 'Poppins-Medium',
   },
   lg: {
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
   },
   success: {
     color: Colors.success,
+  },
+  black: {
+    color: '#000',
   },
 });
 

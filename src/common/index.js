@@ -5,6 +5,7 @@ export {default as Button} from './Button';
 export {default as Content} from './Content';
 export {default as Touchable} from './Touchable';
 export {default as TextInput} from './TextInput';
-export {default as Header} from './Header';
+export {default as MapHeader} from './MapHeader';
+export {default as StackHeader} from './StackHeader';
 export {default as Container} from './Container';
 export {default as InfoBox} from './InfoBox';

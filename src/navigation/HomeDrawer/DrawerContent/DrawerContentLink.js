@@ -1,9 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-// import {Text, Touchable} from '../../common';
-import Text from './../../common/Text';
-import Touchable from './../../common/Touchable';
+import {Text, Touchable} from '../../../common';
 
 const DrawerContentLink = ({icon, title, to, onPress}) => {
   const _handlePress = () => {

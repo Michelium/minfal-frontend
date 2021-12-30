@@ -1,19 +1,15 @@
-import React, {createRef, useState} from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
-import ScalingDrawer from 'react-native-scaling-drawer';
+import React, {createRef} from 'react';
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import DrawerContent from './DrawerContent/index';
-import HomeScreen from './../home/screens/HomeScreen';
+import HomeDrawer from './HomeDrawer/index';
+import FilterScreen from '../filter/screens/FilterScreen';
+import SettingsScreen from '../settings/screens/SettingsScreen';
+import NewsScreen from '../news/screens/NewsScreen';
+import WelcomeScreen from '../welcome/screens/WelcomeScreen';
 
 const Stack = createNativeStackNavigator();
-
-const defaultScalingDrawerConfig = {
-  scalingFactor: 0.8,
-  minimizeFactor: 0.6,
-  swipeOffset: 20,
-};
 
 export const drawerRef = createRef();
 
@@ -21,17 +17,6 @@ export const drawerRef = createRef();
 <AppNavigation />
 ============================================================================= */
 const AppNavigation = () => {
-  const [open, setOpen] = useState(false);
-  
-  const normalView = {
-    height: '100%',
-    borderRadius: 0,
-  };
-  const roundedView = {
-    height: '100%',
-    borderRadius: 15,
-    overflow: 'hidden',
-  };
   return (
     <NavigationContainer>
       <StatusBar
@@ -39,17 +24,13 @@ const AppNavigation = () => {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      <ScalingDrawer
-        ref={drawerRef}
-        content={<DrawerContent drawer={drawerRef} />}
-        frontStyle={open ? roundedView : normalView}
-        {...defaultScalingDrawerConfig}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator>
-      </ScalingDrawer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="News" component={NewsScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

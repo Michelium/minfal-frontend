@@ -12,18 +12,14 @@ import FishIcon from '../../assets/icons/filter-fish-icon.svg';
 import TeaIcon from '../../assets/icons/filter-tea-icon.svg';
 import * as Colors from '../../config/colors';
 
-const HomeFilterModal = ({setSelected}) => {
+const HomeFilterModal = ({isOpen, onCLose}) => {
   const [filter, setFilter] = useState('Bioscopen');
-
-  const _handleClose = () => {
-    setSelected('search');
-  };
 
   return (
     <Modal
-      isVisible={true}
-      onBackButtonPress={_handleClose}
-      onBackdropPress={_handleClose}>
+      isVisible={isOpen}
+      onBackButtonPress={onCLose}
+      onBackdropPress={onCLose}>
       <Card style={styles.card}>
         <Text xl style={styles.headingTxt}>
           FILTERS
@@ -65,11 +61,7 @@ const HomeFilterModal = ({setSelected}) => {
           onPress={setFilter}
         />
         <View center>
-          <Button
-            title="Select"
-            style={styles.selectBtn}
-            onPress={_handleClose}
-          />
+          <Button title="Select" style={styles.selectBtn} onPress={onCLose} />
         </View>
       </Card>
     </Modal>
