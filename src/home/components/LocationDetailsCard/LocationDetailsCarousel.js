@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {StyleSheet, useWindowDimensions} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
-import {Text, View} from '../../../common';
+import {Button, Text, View} from '../../../common';
 import PopCornIcon from '../../../assets/icons/edit-pop-corn-icon.svg';
 import * as Colors from '../../../config/colors';
 
@@ -13,32 +13,40 @@ const LocationDetailsCarousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const {width: windowWidth} = useWindowDimensions();
   const carousel = useRef();
+
   const _handleSnapToItem = index => {
     setCarouselIndex(index);
   };
 
   return (
-    <View style={styles.container}>
-      <Carousel
-        ref={carousel}
-        useScrollView
-        layout={'default'}
-        data={CAROUSEL_MOCK}
-        sliderWidth={windowWidth * 0.8}
-        itemWidth={windowWidth * 0.8}
-        renderItem={renderItem}
-        onSnapToItem={_handleSnapToItem}
+    <>
+      <View style={styles.container}>
+        <Carousel
+          ref={carousel}
+          useScrollView
+          layout={'default'}
+          data={CAROUSEL_MOCK}
+          sliderWidth={windowWidth * 0.8}
+          itemWidth={windowWidth * 0.8}
+          renderItem={renderItem}
+          onSnapToItem={_handleSnapToItem}
+        />
+        <Pagination
+          dotsLength={3}
+          activeDotIndex={carouselIndex}
+          dotStyle={styles.paginationDotActive}
+          containerStyle={styles.pagination}
+          inactiveDotStyle={styles.paginationDotInactive}
+          inactiveDotOpacity={1}
+          inactiveDotScale={1}
+        />
+      </View>
+      <Button
+        style={styles.btn}
+        titleStyle={styles.btnTxt}
+        title="Bedrijfsinformatie"
       />
-      <Pagination
-        dotsLength={CAROUSEL_MOCK.length}
-        activeDotIndex={carouselIndex}
-        dotStyle={styles.paginationDotActive}
-        containerStyle={styles.pagination}
-        inactiveDotStyle={styles.paginationDotInactive}
-        inactiveDotOpacity={1}
-        inactiveDotScale={1}
-      />
-    </View>
+    </>
   );
 };
 
@@ -71,10 +79,14 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingTop: 40,
+    marginTop: 30,
+    marginBottom: 20,
     borderRadius: 6,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.background2,
+    backgroundColor: '#F6F6F6',
+    borderColor: 'rgba(201,201,201, 0.3)',
   },
   pagination: {
     paddingVertical: 15,
@@ -84,8 +96,8 @@ const styles = StyleSheet.create({
     height: 12,
     borderWidth: 1,
     borderRadius: 12 / 2,
-    borderColor: Colors.white,
-    backgroundColor: Colors.white,
+    borderColor: Colors.black,
+    backgroundColor: Colors.black,
   },
   paginationDotInactive: {
     width: 13,
@@ -93,13 +105,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 13 / 2,
     borderColor: Colors.background1,
-    backgroundColor: Colors.background1,
+    backgroundColor: Colors.white,
   },
   carouselItem: {
     justifyContent: 'space-between',
   },
   carouselItemContent: {
     flex: 1,
+    color: '#000',
+  },
+  btn: {
+    marginBottom: 8,
+    borderTopWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(201,201,201, 0.4)',
+  },
+  btnTxt: {
+    fontSize: 25,
+    fontFamily: 'Poppins-Medium',
+    color: '#000',
   },
 });
 

@@ -12,6 +12,7 @@ import {Image, StyleSheet} from 'react-native';
 const HomeScreen = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [currentMarker, setCurrentMarker] = useState(null);
 
   const _handleShowDetails = () => {
     setShowDetails(!showDetails);
@@ -28,8 +29,9 @@ const HomeScreen = () => {
       <HomeMap
         onMarkerPress={_handleShowDetails}
         onModalToggle={_handleModalToggle}
+        setCurrentMarker={setCurrentMarker}
       />
-      {showDetails && <LocationDetailsCard onClose={_handleShowDetails} />}
+      {showDetails && <LocationDetailsCard id={currentMarker} onClose={_handleShowDetails} />}
       <HomeFilterModal isOpen={modalOpen} onCLose={_handleModalToggle} />
     </Container>
   );

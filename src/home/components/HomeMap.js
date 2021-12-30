@@ -7,7 +7,7 @@ import { Button, View } from '../../common';
 import MarkerIcon from './../../assets/icons/edit-map-marker-icon.svg';
 import map_styles from './../../config/map_styles';
 
-const HomeMap = ({onMarkerPress, onModalToggle}) => {
+const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
 
   const [markers, setMarkers] = useState([]);
 
@@ -15,22 +15,24 @@ const HomeMap = ({onMarkerPress, onModalToggle}) => {
     try {
       const response = await fetch('https://app.minfal.nl/api/companies.json');
       const json = await response.json();
-console.log(json);
+
       let tempMarkers = [];
       json.map((marker, index) => {
-        tempMarkers.push({
-          id: marker.id,
-          title: marker.name,
-          description: marker.description,
-          lat: parseFloat(marker.latitude),
-          long: parseFloat(marker.longitude),
-        });
+        if (marker.latitude && marker.longitude) {
+          tempMarkers.push({
+            id: marker.id,
+            title: marker.name,
+            description: marker.description,
+            lat: parseFloat(marker.latitude),
+            long: parseFloat(marker.longitude),
+          });
+        }
       });
       setMarkers(tempMarkers)
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }
 
@@ -53,7 +55,7 @@ console.log(json);
         {markers.map((location, index) => (
           <Marker
             key={index}
-            onPress={onMarkerPress}
+            onPress={() => {onMarkerPress(); setCurrentMarker(location.id) }}
             coordinate={{
               latitude: location.lat,
               longitude: location.long
@@ -98,6 +100,5 @@ const styles = StyleSheet.create({
     height: 37,
   },
 });
-
 
 export default HomeMap;
