@@ -31,7 +31,7 @@ const LocationDetailsCard = ({ onClose, id }) => {
       const response = await fetch('https://app.minfal.nl/api/companies/' + id);
       const json = await response.json();
       setLocation(json);
-
+console.log(location)
     } catch (error) {
       console.log(error);
     } finally {
@@ -52,12 +52,13 @@ const LocationDetailsCard = ({ onClose, id }) => {
     handleIndicatorStyle={styles.handleIndicator}
     backgroundStyle={styles.containerBg}
     snapPoints={snapPoints}
-    onClose={onClose}>
+    onClose={onClose}
+    {...location}>
     <BottomSheetScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.contentContainer}>
         <LocationDetailsName {...location}/>
         <LocationDetailsCarousel />
-        <LocationDetailsLocationInfo />
+        <LocationDetailsLocationInfo {...location} />
         <LocationDetailsContactInfo />
       </View>
       <LocationDetailsBottomScroll />

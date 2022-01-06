@@ -8,8 +8,11 @@ import * as Colors from '../../../config/colors';
 /* =============================================================================
 < />
 ============================================================================= */
-const LocationDetailsCustomHandle = () => (
-  <View horizontal style={styles.introContainer}>
+const LocationDetailsCustomHandle = (props) => {
+  const {type} = props;
+
+  return (
+    <View horizontal style={styles.introContainer}>
     <View style={styles.handler} />
     <View horizontal>
       <CinemaIcon />
@@ -19,7 +22,8 @@ const LocationDetailsCustomHandle = () => (
     </View>
     <Button style={styles.introBtn} title="Basic" />
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   introContainer: {
