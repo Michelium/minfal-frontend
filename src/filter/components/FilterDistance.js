@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
   },
   sliderContainer: {
-    marginTop: 4,
+    marginTop: 20,
   },
   selectedRange: {
     height: 5,

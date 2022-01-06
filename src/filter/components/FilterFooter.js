@@ -21,7 +21,7 @@ const FilterFooter = () => {
           trackColor={{false: Colors.border, true: Colors.primary}}
         />
       </View>
-      <Button title="Apply Filter" />
+      <Button title="Zoeken" />
     </View>
   );
 };
