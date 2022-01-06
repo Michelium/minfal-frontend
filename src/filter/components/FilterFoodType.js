@@ -68,6 +68,7 @@ const FilterFoodType = () => {
         style={styles.dropdownContainer}
         arrowIconStyle={styles.dropdownArrow}
         placeholder="Select Food Type"
+        dropDownDirection='BOTTOM'
       />
     </View>
   );
@@ -77,11 +78,14 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     paddingHorizontal: 20,
+    position: 'relative',
+    zIndex: 1000,
   },
   dropdownContainer: {
     borderWidth: 1.4,
     backgroundColor: '#fff',
     borderColor: Colors.primary,
+    elevation: 1000,
   },
   dropdownArrow: {
     width: 30,
