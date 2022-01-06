@@ -7,15 +7,18 @@ import * as Colors from '../../../config/colors';
 /* =============================================================================
 <LocationDetailsName />
 ============================================================================= */
-const LocationDetailsName = (name) => {
+const LocationDetailsName = (props) => {
+
+  const {name, location_name} = props;
+
   return (
     <View horizontal style={styles.titleContainer}>
       <View>
         <Text black xl>
-          {name.name}
+          {name}
         </Text>
         <Text sm black>
-          Amsterdam Arena
+          {location_name}
         </Text>
       </View>
       <Image source={require('../../../assets/images/edit-place-logo.png')} />
