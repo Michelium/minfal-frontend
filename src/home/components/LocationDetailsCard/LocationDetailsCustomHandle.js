@@ -5,13 +5,15 @@ import {Button, Text, View} from '../../../common';
 import CinemaIcon from '../../../assets/icons/edit-cinema-icon-large.svg';
 import * as Colors from '../../../config/colors';
 
-/* =============================================================================
-< />
-============================================================================= */
-const LocationDetailsCustomHandle = (props) => {
-  const {type} = props;
-
-  return (
+// locationDetailsCustomHandle is a function that takes arguments, and returns in turn a new function that uses these arguments.
+// Thus, we return a function that we can use as handler in the component, by calling locationDetailsCustomHandle(arguments) we get this function.
+// In the component, this will look like: onChangeHandler={locationDetailsCustomHandle(arguments)}.
+const locationDetailsCustomHandle = (location) => {
+  console.log("This gets called as soon as the component is loaded, in order to set the handler");
+  return () => {
+    console.log("this gets callend when the handler get's called");
+    console.log(location);
+    return (
     <View horizontal style={styles.introContainer}>
     <View style={styles.handler} />
     <View horizontal>
@@ -23,6 +25,7 @@ const LocationDetailsCustomHandle = (props) => {
     <Button style={styles.introBtn} title="Basic" />
   </View>
   );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -59,4 +62,4 @@ const styles = StyleSheet.create({
 
 /* Export
 ============================================================================= */
-export default LocationDetailsCustomHandle;
+export default locationDetailsCustomHandle;
