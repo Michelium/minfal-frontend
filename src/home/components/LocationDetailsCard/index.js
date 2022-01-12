@@ -1,14 +1,14 @@
-import React, {useMemo, useRef, useState, useEffect} from 'react';
-import {StyleSheet, useWindowDimensions} from 'react-native';
-import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 
-import {View} from '../../../common';
+import { View } from '../../../common';
 import LocationDetailsCarousel from './LocationDetailsCarousel';
 import LocationDetailsBottomScroll from './LocationDetailsBottomScroll';
 import LocationDetailsContactInfo from './LocationDetailsContactInfo';
 import LocationDetailsLocationInfo from './LocationDetailsLocationInfo';
 import LocationDetailsName from './LocationDetailsName';
-import LocationDetailsCustomHandle from './LocationDetailsCustomHandle';
+import locationDetailsCustomHandle from './LocationDetailsCustomHandle';
 import * as Colors from '../../../config/colors';
 
 /* =============================================================================
@@ -31,7 +31,7 @@ const LocationDetailsCard = ({ onClose, id }) => {
       const response = await fetch('https://app.minfal.nl/api/companies/' + id);
       const json = await response.json();
       setLocation(json);
-console.log(location)
+      console.log(location)
     } catch (error) {
       console.log(error);
     } finally {
@@ -45,25 +45,26 @@ console.log(location)
 
   return (
     <BottomSheet
-    ref={bottomSheetRef}
-    enablePanDownToClose
-    handleComponent={LocationDetailsCustomHandle}
-    enabledGestureInteraction={true}
-    handleIndicatorStyle={styles.handleIndicator}
-    backgroundStyle={styles.containerBg}
-    snapPoints={snapPoints}
-    onClose={onClose}
-    {...location}>
-    <BottomSheetScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.contentContainer}>
-        <LocationDetailsName {...location}/>
-        <LocationDetailsCarousel />
-        <LocationDetailsLocationInfo {...location} />
-        <LocationDetailsContactInfo />
-      </View>
-      <LocationDetailsBottomScroll />
-    </BottomSheetScrollView>
-  </BottomSheet>
+      ref={bottomSheetRef}
+      enablePanDownToClose
+      /* Below we call the function that returns a handler function for us*/
+      handleComponent={locationDetailsCustomHandle(location)}
+      enabledGestureInteraction={true}
+      handleIndicatorStyle={styles.handleIndicator}
+      backgroundStyle={styles.containerBg}
+      snapPoints={snapPoints}
+      onClose={onClose}
+      {...location}>
+      <BottomSheetScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.contentContainer}>
+          <LocationDetailsName {...location} />
+          <LocationDetailsCarousel />
+          <LocationDetailsLocationInfo {...location} />
+          <LocationDetailsContactInfo />
+        </View>
+        <LocationDetailsBottomScroll />
+      </BottomSheetScrollView>
+    </BottomSheet>
   );
 };
 
