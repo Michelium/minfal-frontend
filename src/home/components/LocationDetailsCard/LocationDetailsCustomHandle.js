@@ -19,10 +19,10 @@ const locationDetailsCustomHandle = (location) => {
     <View horizontal>
       <CinemaIcon />
       <Text lg style={styles.introTxt}>
-        Bioscopen
+        {location.category}
       </Text>
     </View>
-    <Button style={styles.introBtn} title="Basic" />
+    <Button style={styles.introBtn} title={location.type} />
   </View>
   );
   }
