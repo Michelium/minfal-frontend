@@ -12,9 +12,8 @@ import TeaIcon from '../../assets/icons/filter-tea-icon.svg';
 
 import * as Colors from '../../config/colors';
 
-const FilterFoodType = () => {
+const FilterFoodType = ({category, setCategory}) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(0);
   const [items, setItems] = useState([
     {
       label: 'Bioscopen',
@@ -53,17 +52,18 @@ const FilterFoodType = () => {
       containerStyle: styles.itemContainerStyles,
     },
   ]);
+
   return (
     <View style={styles.container}>
-      <Text xl black>
-        Food Type
+      <Text lg black>
+        Categorie
       </Text>
       <DropDownPicker
         open={open}
-        value={value}
+        value={category}
         items={items}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={setCategory}
         setItems={setItems}
         style={styles.dropdownContainer}
         arrowIconStyle={styles.dropdownArrow}

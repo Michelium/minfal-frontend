@@ -5,12 +5,11 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {Text, View} from '../../common';
 import * as Colors from '../../config/colors';
 
-const FilterDistance = () => {
-  const [distance, setDistance] = useState([3]);
+const FilterDistance = ({distance, setDistance}) => {
   const layout = useWindowDimensions();
   return (
     <View style={styles.container}>
-      <Text xl black marginBottom={20}>
+      <Text lg black marginBottom={20}>
         Afstand
       </Text>
       <MultiSlider

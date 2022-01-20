@@ -3,15 +3,15 @@ import {StyleSheet} from 'react-native';
 
 import {Button, Text, View} from '../../common';
 
-const FilterRatings = () => {
+const FilterRatings = ({rating, setRating}) => {
   const [selected, setSelected] = useState('alle');
 
   const _handleSelected = title => () => {
-    setSelected(title);
+    setRating(title);
   };
   return (
     <View style={styles.container}>
-      <Text xl black>
+      <Text lg black>
         Minfal Rating
       </Text>
       <View horizontal>
@@ -19,20 +19,20 @@ const FilterRatings = () => {
           marginRight={15}
           title="Alle"
           style={styles.ratingBtn}
-          bgColor={selected === 'alle' ? undefined : '#fff'}
+          bgColor={rating === 'alle' ? undefined : '#fff'}
           onPress={_handleSelected('alle')}
         />
         <Button
           marginRight={15}
           title="Basic"
           style={styles.ratingBtn}
-          bgColor={selected === 'basic' ? undefined : '#fff'}
+          bgColor={rating === 'basic' ? undefined : '#fff'}
           onPress={_handleSelected('basic')}
         />
         <Button
           title="Plus"
           style={styles.ratingBtn}
-          bgColor={selected === 'plus' ? undefined : '#fff'}
+          bgColor={rating === 'plus' ? undefined : '#fff'}
           onPress={_handleSelected('plus')}
         />
       </View>

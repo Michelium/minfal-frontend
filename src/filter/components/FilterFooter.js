@@ -4,24 +4,22 @@ import {StyleSheet, Switch} from 'react-native';
 import {Button, View, Text} from '../../common';
 import * as Colors from '../../config/colors';
 
-const FilterFooter = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const FilterFooter = ({opened, setOpened}) => {
+  const toggleSwitch = () => setOpened(previousState => !previousState);
   return (
     <View style={styles.container}>
       <View horizontal style={styles.switchContainer}>
-        <Text xl black>
+        <Text lg black>
           Nu geopend
         </Text>
         <Switch
-          value={isEnabled}
+          value={opened}
           thumbColor={Colors.primary}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           trackColor={{false: Colors.border, true: Colors.primary}}
         />
       </View>
-      <Button title="Zoeken" />
     </View>
   );
 };
