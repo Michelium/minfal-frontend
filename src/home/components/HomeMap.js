@@ -13,7 +13,9 @@ const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
 
   const getMarkers = async () => {
     try {
-      const response = await fetch('https://app.minfal.nl/api/companies.json');
+      const response = await fetch('https://app.minfal.nl/api/companies', {
+        method: 'POST',
+      })
       const json = await response.json();
 
       let tempMarkers = [];

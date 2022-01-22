@@ -9,7 +9,9 @@ import * as Colors from '../../../config/colors';
 ============================================================================= */
 const LocationDetailsName = (props) => {
 
-  const {name, location_name} = props;
+  const {name, location_name, logo} = props;
+
+  const imageUrl = {uri: 'https://app.minfal.nl/uploads/images/' + logo};
 
   return (
     <View horizontal style={styles.titleContainer}>
@@ -21,7 +23,7 @@ const LocationDetailsName = (props) => {
           {location_name}
         </Text>
       </View>
-      <Image source={require('../../../assets/images/edit-place-logo.png')} />
+      <Image source={imageUrl} style = {{width: 60, height: 60, resizeMode : 'contain', margin: 5, flex: 1, alignItems: 'flex-end' }}/>
     </View>
   );
 };
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '100%',
     borderRadius: 8,
-    paddingHorizontal: 20,
     justifyContent: 'space-between',
     backgroundColor: Colors.white,
   },

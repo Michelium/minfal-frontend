@@ -20,18 +20,20 @@ const LocationDetailsLocationInfo = (props) => {
     try {
       const d = new Date();
       const day = d.getDay();
-      const url = periods[day - 1];
 
-      const response = await fetch('https://app.minfal.nl' + url);
-      const json = await response.json();
+      let period = {};
+      if (periods !== undefined) {
+        periods.forEach(element => {
+          if (element.week_day === day - 1) {
+            period = element;
+          }
+        });
+      }
 
-      setPeriod(json);
+      setPeriod(period);
       setLoading(false);
-      // console.log(isOpen(period.open_at, period.close_at));
     } catch (error) {
       console.log(error);
-    } finally {
-      // setLoading(false);
     }
   }
 
@@ -80,7 +82,7 @@ const LocationDetailsLocationInfo = (props) => {
     );
   } else {
     return (
-      <Text style={{color: 'red'}}>Kan niet worden geladen</Text>
+      <Text style={{ color: 'red' }}>Kan niet worden geladen</Text>
     );
   }
 
