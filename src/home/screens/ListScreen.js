@@ -52,9 +52,7 @@ const ListScreen = (props) => {
     return (
       <View style={styles.listItem}>
         <Image source={{ uri: 'https://app.minfal.nl/uploads/images/' + item.logo }} style={{ width: 60, height: 60, marginRight: 10 }} />
-        <View style={{alignItems: "right"}}>
-        </View>
-        <View style={{ alignItems: "left", flex: 1 }}>
+        <View style={{ alignItems: "flex-start", flex: 1 }}>
           <Text lg style={{ fontWeight: "bold", color: Colors.black }}>{item.name}</Text>
           <Text sm style={{color: Colors.black}}>{item.location_name}</Text>
         </View>
