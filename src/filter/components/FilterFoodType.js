@@ -16,26 +16,31 @@ const FilterFoodType = ({category, setCategory}) => {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     {
+      label: 'Alle',
+      value: 'alle',
+      containerStyle: styles.itemContainerStyles,
+    },
+    {
       label: 'Bioscopen',
-      value: 'bioscopen',
+      value: 'bioscoop',
       icon: () => <CinemaIcon />,
       containerStyle: styles.itemContainerStyles,
     },
     {
       label: 'Slagers',
-      value: 'slagers',
+      value: 'slager',
       icon: () => <MeatIcon />,
       containerStyle: styles.itemContainerStyles,
     },
     {
       label: 'Kaasboeren',
-      value: 'kaasboeren',
+      value: 'kaasboer',
       icon: () => <ChessIcon />,
       containerStyle: styles.itemContainerStyles,
     },
     {
       label: 'Groente-Fruitboeren',
-      value: 'groente',
+      value: 'groenteboer',
       icon: () => <StrawberryIcon />,
       containerStyle: styles.itemContainerStyles,
     },
@@ -47,7 +52,7 @@ const FilterFoodType = ({category, setCategory}) => {
     },
     {
       label: 'Koffietent',
-      value: 'koffietent',
+      value: 'koffie tent',
       icon: () => <TeaIcon />,
       containerStyle: styles.itemContainerStyles,
     },
@@ -69,6 +74,7 @@ const FilterFoodType = ({category, setCategory}) => {
         arrowIconStyle={styles.dropdownArrow}
         placeholder="Select Food Type"
         dropDownDirection='BOTTOM'
+        maxHeight={350}
       />
     </View>
   );

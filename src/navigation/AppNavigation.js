@@ -8,6 +8,7 @@ import FilterScreen from '../filter/screens/FilterScreen';
 import SettingsScreen from '../settings/screens/SettingsScreen';
 import NewsScreen from '../news/screens/NewsScreen';
 import WelcomeScreen from '../welcome/screens/WelcomeScreen';
+import ListScreen from '../home/screens/ListScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ const AppNavigation = () => {
         <Stack.Screen name="Filter" component={FilterScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="News" component={NewsScreen} />
+        <Stack.Screen name="List" component={ListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

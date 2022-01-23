@@ -33,12 +33,12 @@ const LocationDetailsCard = ({ onClose, id }) => {
       const response = await fetch('https://app.minfal.nl/api/company', {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           id: id,
-         }),
+        }),
       });
       const json = await response.json();
 
@@ -67,7 +67,7 @@ const LocationDetailsCard = ({ onClose, id }) => {
         backgroundStyle={styles.containerBg}
         snapPoints={snapPoints}
         onClose={onClose}
-        >
+      >
         <BottomSheetScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.contentContainer}>
             <LocationDetailsName {...location} />
