@@ -17,7 +17,7 @@ const FilterScreen = () => {
       navigation.navigate(to);
       drawerRef.current.close();
     } else {
-      navigation.navigate(to);
+      navigation.navigate('Welcome');
     }
   };
 

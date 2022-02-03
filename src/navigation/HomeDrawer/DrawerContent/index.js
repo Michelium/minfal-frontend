@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import { LinearGradient } from 'expo-linear-gradient';
+import { CommonActions } from '@react-navigation/native';
 
 import {View} from '../../../common';
 import {drawerRef} from '../index';
@@ -49,14 +50,14 @@ const DrawerContent = () => {
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="HomeDrawer"
+          to="News"
           title="Ontwikkelingen Minfal"
           icon={<BuildingIcon />}
           onPress={_handleLinkPress}
         />
         <DrawerContentLink
-          to="News"
-          title="Partners"
+          to="HomeDrawer"
+          title="Minfal Shop"
           icon={<HandShakeIcon />}
           onPress={_handleLinkPress}
         />

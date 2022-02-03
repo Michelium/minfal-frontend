@@ -32,7 +32,7 @@ const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
       });
       setMarkers(tempMarkers)
     } catch (error) {
-      console.log(error);
+      alert(error);
     } finally {
       // setLoading(false);
     }

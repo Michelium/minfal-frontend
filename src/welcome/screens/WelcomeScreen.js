@@ -36,8 +36,7 @@ const Item = ({item}) => {
         <View>
           <WelcomeIcon />
           <View>
-            <Text style={styles.welcomeTxt}>WELCOME</Text>
-            <Text style={styles.descriptionTxt}>To the Minfal App</Text>
+            <Text style={styles.welcomeTxt}>WELKOM</Text>
           </View>
         </View>
         <View center>
@@ -68,11 +67,6 @@ const getStyles = insets =>
       fontSize: 40,
       marginTop: 35,
       color: '#000',
-      textAlign: 'center',
-    },
-    descriptionTxt: {
-      color: '#000',
-      marginTop: -10,
       textAlign: 'center',
     },
     paginationDotActive: {
