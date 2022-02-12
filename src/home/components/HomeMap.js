@@ -2,12 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/core';
 
 import { Button, View } from '../../common';
 import MarkerIcon from './../../assets/icons/edit-map-marker-icon.svg';
 import map_styles from './../../config/map_styles';
 
-const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
+const HomeMap = ({ onMarkerPress, onModalToggle, setCurrentMarker }) => {
+  const navigation = useNavigation();
+  const _handleLinkPress = to => {
+    if (to === 'HomeDrawer') {
+      navigation.navigate(to);
+      drawerRef.current.close();
+    } else {
+      navigation.navigate(to);
+    }
+  };
 
   const [markers, setMarkers] = useState([]);
 
@@ -57,7 +67,7 @@ const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
         {markers.map((location, index) => (
           <Marker
             key={index}
-            onPress={() => {onMarkerPress(); setCurrentMarker(location.id) }}
+            onPress={() => { onMarkerPress(); setCurrentMarker(location.id) }}
             coordinate={{
               latitude: location.lat,
               longitude: location.long
@@ -67,7 +77,10 @@ const HomeMap = ({onMarkerPress, onModalToggle, setCurrentMarker}) => {
           </Marker>
         ))}
       </MapView>
-      <Button style={styles.filterBtn} onPress={onModalToggle}>
+      <Button
+        style={styles.filterBtn}   
+        onPress={() => {navigation.navigate('Filter')}}
+      >
         <Image
           style={styles.filterBtnImg}
           source={require('../../assets/images/filter-icon.jpeg')}
